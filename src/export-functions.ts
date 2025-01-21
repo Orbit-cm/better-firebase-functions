@@ -135,7 +135,7 @@ const disabledLogger = {
 
 const getFunctionInstance = () => process.env.FUNCTION_NAME || process.env.K_SERVICE;
 const isDeployment = () => !getFunctionInstance();
-const funcNameMatchesInstance = (funcName: string) => funcName === getFunctionInstance();
+const funcNameMatchesInstance = (funcName: string) => funcName.split("-").map(fragment => fragment.toLowerCase()).join("-") === getFunctionInstance();
 const getTriggerFromModule = (inputModule: any) => inputModule?.default;
 
 const coldModuleMsg = '[better-firebase-functions] Load Module (Cold-Start)';
